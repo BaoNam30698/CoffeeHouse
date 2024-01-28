@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33815.320
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoffeeHouse.App", "src\CoffeeHouse.App\CoffeeHouse.App.csproj", "{61441F25-4059-457D-B741-B47D8D918B36}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoffeeHouse.Core", "src\CoffeeHouse.Core\CoffeeHouse.Core.csproj", "{FE3D16F0-6494-4039-AEBD-928E1411316F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{61441F25-4059-457D-B741-B47D8D918B36}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61441F25-4059-457D-B741-B47D8D918B36}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61441F25-4059-457D-B741-B47D8D918B36}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{61441F25-4059-457D-B741-B47D8D918B36}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61441F25-4059-457D-B741-B47D8D918B36}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61441F25-4059-457D-B741-B47D8D918B36}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{FE3D16F0-6494-4039-AEBD-928E1411316F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE3D16F0-6494-4039-AEBD-928E1411316F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE3D16F0-6494-4039-AEBD-928E1411316F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE3D16F0-6494-4039-AEBD-928E1411316F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E5114FCA-79B1-4145-8740-BA33263AF1FE}
+	EndGlobalSection
+EndGlobal
