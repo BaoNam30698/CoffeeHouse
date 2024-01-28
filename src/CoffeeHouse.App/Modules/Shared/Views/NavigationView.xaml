@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CoffeeHouse.App.Modules.Shared.Views.NavigationView"
+             xmlns:misc="clr-namespace:CoffeeHouse.Core.Misc;assembly=CoffeeHouse.Core"
+             xmlns:viewmodel="clr-namespace:CoffeeHouse.App.Modules.Shared.Views"
+             x:DataType="viewmodel:NavigationViewModel">
+
+    <Grid ColumnDefinitions="*,*,*,*">
+        <Image Grid.Column="0" Source="home.svg" WidthRequest="25" HeightRequest="25">
+            <Image.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding GoToCommand}" CommandParameter="{x:Static misc:TabType.Home}"></TapGestureRecognizer>
+            </Image.GestureRecognizers>
+        </Image>
+        <Image Grid.Column="1" Source="card.svg" WidthRequest="25" HeightRequest="25">
+            <Image.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding GoToCommand}" CommandParameter="{x:Static misc:TabType.Card}"></TapGestureRecognizer>
+            </Image.GestureRecognizers>
+        </Image>
+        <Image Grid.Column="2" Source="favorite.svg" WidthRequest="25" HeightRequest="25">
+            <Image.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding GoToCommand}" CommandParameter="{x:Static misc:TabType.Favorite}"></TapGestureRecognizer>
+            </Image.GestureRecognizers>
+        </Image>
+        <Image Grid.Column="3" Source="bell.svg" WidthRequest="25" HeightRequest="25">
+            <Image.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding GoToCommand}" CommandParameter="{x:Static misc:TabType.Notification}"></TapGestureRecognizer>
+            </Image.GestureRecognizers>
+        </Image>
+    </Grid>
+</ContentView>

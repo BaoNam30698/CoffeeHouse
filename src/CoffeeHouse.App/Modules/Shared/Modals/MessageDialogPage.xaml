@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<mopups:PopupPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mopups="clr-namespace:Mopups.Pages;assembly=Mopups"
+             x:Class="CoffeeHouse.App.Modules.Shared.Modals.MessageDialogPage"
+             CloseWhenBackgroundIsClicked="False"
+             BackgroundColor="{StaticResource c1}"
+             Title="MessageDialogPage">
+    <VerticalStackLayout VerticalOptions="Center" Padding="20,0">
+        <Border BackgroundColor="{OnPlatform Android='White', iOS='#f1f1f1'}" StrokeThickness="0.1">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="20" />
+            </Border.StrokeShape>
+            <VerticalStackLayout>
+                <Grid RowDefinitions="auto,auto,auto" Padding="15,0">
+                    <Image Grid.Row="0" Source="ic_lock.png" x:Name="ImgIcon" Margin="0,20,0,0" HorizontalOptions="Center"></Image>
+                    <Label Grid.Row="1"
+                       x:Name="LblTitle"
+                       TextColor="{StaticResource Primary}"
+                       FontSize="22"
+                       Margin="0,10,0,0"
+                       FontFamily="OpenSansSemibold"
+                       HorizontalTextAlignment="Center"></Label>
+                    <Label Grid.Row="2"
+                       x:Name="LblMessage"
+                       TextColor="{StaticResource Primary}"
+                       FontFamily="OpenSansRegular"
+                       FontSize="20"
+                       Margin="0,10,0,0"
+                       HorizontalTextAlignment="Center"></Label>
+                </Grid>
+                <Grid RowDefinitions="auto,*" Margin="0,10,0,0">
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnBtnCancelClicked" NumberOfTapsRequired="1">
+
+                        </TapGestureRecognizer>
+                    </Grid.GestureRecognizers>
+                    <BoxView Grid.Row="0" Color="{StaticResource Gray300}" Opacity="0.5" VerticalOptions="FillAndExpand" HeightRequest="1"/>
+                    <Label x:Name="BtnCancel"
+                           Grid.Row="1"
+                           Padding="0,10"
+                           FontFamily="OpenSansSemibold"
+                           FontSize="20"
+                           TextColor="{StaticResource Secondary}"
+                           VerticalTextAlignment="Center"
+                           HorizontalTextAlignment="Center">
+                    </Label>
+                </Grid>
+            </VerticalStackLayout>
+        </Border>
+    </VerticalStackLayout>
+</mopups:PopupPage>

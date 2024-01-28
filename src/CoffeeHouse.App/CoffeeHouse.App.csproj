@@ -32,14 +32,13 @@
 
 	<ItemGroup>
 		<!-- App Icon -->
-		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
-
+		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#0C0F14" />
+		
 		<!-- Splash Screen -->
-		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
+		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#0C0F14" BaseSize="128,128" />
 
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
-		<MauiImage Update="Resources\Images\dotnet_bot.svg" BaseSize="168,208" />
 
 		<!-- Custom Fonts -->
 		<MauiFont Include="Resources\Fonts\*" />
@@ -49,7 +48,58 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Modules\" />
+	  <None Remove="appsettings.json" />
+	  <None Remove="Resources\Fonts\Poppins-Black.ttf" />
+	  <None Remove="Resources\Fonts\Poppins-Bold.ttf" />
+	  <None Remove="Resources\Fonts\Poppins-ExtraBold.ttf" />
+	  <None Remove="Resources\Fonts\Poppins-ExtraLight.ttf" />
+	  <None Remove="Resources\Fonts\Poppins-Light.ttf" />
+	  <None Remove="Resources\Fonts\Poppins-Medium.ttf" />
+	  <None Remove="Resources\Fonts\Poppins-Regular.ttf" />
+	  <None Remove="Resources\Fonts\Poppins-SemiBold.ttf" />
+	  <None Remove="Resources\Fonts\Poppins-Thin.ttf" />
+	  <None Remove="Resources\Images\bell.svg" />
+	  <None Remove="Resources\Images\card.svg" />
+	  <None Remove="Resources\Images\coffeecup.gif" />
+	  <None Remove="Resources\Images\favorite.svg" />
+	  <None Remove="Resources\Images\home.svg" />
+	  <None Remove="Resources\Images\loading_icon.png" />
+	  <None Remove="Resources\Images\minus.svg" />
+	  <None Remove="Resources\Images\plus.svg" />
+	  <None Remove="Resources\Images\search.svg" />
+	  <None Remove="Resources\Images\settings.svg" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <EmbeddedResource Include="appsettings.json">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </EmbeddedResource>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="LoadingPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Modules\HomeComponent\HomePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Modules\LoginComponent\LoginPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Modules\Shared\Modals\MessageDialogPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Modules\Shared\Views\NavigationView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\CoffeeHouse.Core\CoffeeHouse.Core.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="ViewModels\Login\" />
 	</ItemGroup>
 
 </Project>
