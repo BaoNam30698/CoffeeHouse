@@ -3,44 +3,173 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CoffeeHouse.App.Modules.HomeComponent.HomePage"
              xmlns:view="clr-namespace:CoffeeHouse.App.Modules.Shared.Views"
+             xmlns:viewmodel="clr-namespace:CoffeeHouse.App.Modules.HomeComponent"
              BackgroundColor="{StaticResource Primary}"
              Title="HomePage">
 
-    <Grid RowDefinitions="auto,auto,auto,*,auto" Padding="20,15">
-        <Grid Grid.Row="0" ColumnDefinitions="auto,*,auto">
-            <Image Grid.Column="0" Source="settings.svg"></Image>
-            <Label Grid.Column="1"></Label>
-            <Label Grid.Column="2" Text="Hi, Nam Pham" TextColor="White"></Label>
-        </Grid>
-        <Grid Grid.Row="1" Margin="0,20">
-            <Label Text="Find the best &#10;coffee for you" TextColor="White" FontSize="24" FontAttributes="Bold"></Label>
-        </Grid>
-        <Grid Grid.Row="2">
-            <Border Stroke="#141921" BackgroundColor="#141921"
+    <StackLayout>
+        <ScrollView VerticalOptions="FillAndExpand" HorizontalScrollBarVisibility="Never" Margin="20,15">
+            <Grid RowDefinitions="auto,auto,auto,auto,auto,auto,auto">
+                <Grid Grid.Row="0" ColumnDefinitions="auto,*,auto">
+                    <Image Grid.Column="0" Source="settings.svg"></Image>
+                    <Label Grid.Column="1"></Label>
+                    <Label Grid.Column="2" Text="Hi, Nam Pham" TextColor="White"></Label>
+                </Grid>
+                <Grid Grid.Row="1" Margin="0,20">
+                    <Label Text="Find the best &#10;coffee for you" TextColor="White" FontSize="24" FontAttributes="Bold"></Label>
+                </Grid>
+                <Grid Grid.Row="2">
+                    <Border Stroke="#141921" BackgroundColor="#141921"
                     StrokeThickness="0"
                     Margin="0,10,0,0"
                     Padding="10,0">
-                <Border.StrokeShape>
-                    <RoundRectangle CornerRadius="7" />
-                </Border.StrokeShape>
-                <Grid ColumnDefinitions="auto,*">
-                    <Image x:Name="ImgSearch" Grid.Column="0" Source="search.png" WidthRequest="20" HeightRequest="20" Margin="0,0,5,0"/>
-                    <Entry Grid.Column="1" BackgroundColor="#141921" x:Name="EntrySearch"
-                           Placeholder="find your coffee"
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="7" />
+                        </Border.StrokeShape>
+                        <Grid ColumnDefinitions="auto,*">
+                            <Image x:Name="ImgSearch" Grid.Column="0" Source="search.png" WidthRequest="20" HeightRequest="20" Margin="0,0,5,0"/>
+                            <Entry Grid.Column="1" BackgroundColor="#141921" x:Name="EntrySearch"
+                           Placeholder="find your coffee..."
                            PlaceholderColor="#52555A"
                            FontSize="18" 
                            Unfocused="OnInputSearchUnFocused"
                            Focused="OnInputSearchFocused"
                            TextColor="White"
                            Text="{Binding TextSearch}"></Entry>
+                        </Grid>
+
+                    </Border>
                 </Grid>
-                
-            </Border>
-        </Grid>
-        
-        <Grid Grid.Row="3"></Grid>
-        <Grid Grid.Row="4">
-            <view:NavigationView></view:NavigationView>
-        </Grid>
-    </Grid>
+
+                <Grid Grid.Row="3" Margin="0,20">
+                    <CollectionView ItemsSource="{Binding TypeOfCoffee}" HeightRequest="40" HorizontalScrollBarVisibility="Never">
+                        <CollectionView.ItemsLayout>
+                            <LinearItemsLayout Orientation="Horizontal" ItemSpacing="15" />
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <VerticalStackLayout>
+                                    <VerticalStackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:HomeViewModel}}, Path=TypeOfCoffeeTappedCommand}" CommandParameter="{Binding .}">
+
+                                        </TapGestureRecognizer>
+                                    </VerticalStackLayout.GestureRecognizers>
+                                    <Grid RowDefinitions="auto,auto">
+                                        <Label Grid.Row="0" TextColor="{Binding TextColor}" Text="{Binding Name}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"></Label>
+                                        <Ellipse Grid.Row="1" Fill="{Binding TextColor}"
+                                         Stroke="{Binding TextColor}"
+                                         VerticalOptions="Center"
+                                         HorizontalOptions="Center"
+                                         Opacity="{Binding DotOpacity}"
+                                         StrokeThickness="0.1"
+                                         WidthRequest="5"
+                                         HeightRequest="5" />
+                                    </Grid>
+                                </VerticalStackLayout>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </Grid>
+
+                <Grid Grid.Row="4">
+                    <CollectionView ItemsSource="{Binding CoffeeCollection}" HorizontalScrollBarVisibility="Never">
+                        <CollectionView.ItemsLayout>
+                            <LinearItemsLayout Orientation="Horizontal" ItemSpacing="15" />
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <VerticalStackLayout>
+                                    <Border StrokeThickness="1" Stroke="#252A32" Padding="15" BackgroundColor="#252A32">
+                                        <Border.StrokeShape>
+                                            <RoundRectangle CornerRadius="25" />
+                                        </Border.StrokeShape>
+                                        <VerticalStackLayout>
+                                            <Border StrokeThickness="0.1" Stroke="transparent">
+                                                <Border.StrokeShape>
+                                                    <RoundRectangle CornerRadius="25" />
+                                                </Border.StrokeShape>
+                                                <Image Source="{Binding ImageUrl}" Aspect="AspectFill"></Image>
+                                            </Border>
+                                            <Label Text="{Binding ShortDescription}" Margin="0,10,0,5" TextColor="White"></Label>
+
+                                            <Grid ColumnDefinitions="*, auto">
+                                                <Label Grid.Column="0" VerticalTextAlignment="Center">
+                                                    <Label.FormattedText>
+                                                        <FormattedString>
+                                                            <Span Text="$ " TextColor="{StaticResource Secondary}" FontFamily="PoppinsRegular" FontSize="18"></Span>
+                                                            <Span Text="{Binding Price}" TextColor="White" FontFamily="PoppinsRegular" FontSize="16" FontAttributes="Bold"></Span>
+                                                        </FormattedString>
+                                                    </Label.FormattedText>
+                                                </Label>
+                                                <Border Grid.Column="1" Padding="10" BackgroundColor="{StaticResource Secondary}" Stroke="{StaticResource Secondary}">
+                                                    <Border.StrokeShape>
+                                                        <RoundRectangle CornerRadius="10" />
+                                                    </Border.StrokeShape>
+                                                    <Image Source="plus.svg" WidthRequest="15" HeightRequest="15"></Image>
+                                                </Border>
+                                            </Grid>
+
+                                        </VerticalStackLayout>
+                                    </Border>
+                                </VerticalStackLayout>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </Grid>
+
+                <Grid Grid.Row="5" Margin="0,20">
+                    <Label Text="Coffee Beans" TextColor="White" FontSize="20"></Label>
+                </Grid>
+
+                <Grid Grid.Row="6">
+                    <CollectionView ItemsSource="{Binding CoffeeBeansCollection}" HorizontalScrollBarVisibility="Never">
+                        <CollectionView.ItemsLayout>
+                            <LinearItemsLayout Orientation="Horizontal" ItemSpacing="15" />
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <VerticalStackLayout>
+                                    <Border StrokeThickness="1" Stroke="#252A32" Padding="15" BackgroundColor="#252A32">
+                                        <Border.StrokeShape>
+                                            <RoundRectangle CornerRadius="25" />
+                                        </Border.StrokeShape>
+                                        <VerticalStackLayout>
+                                            <Border StrokeThickness="0.1" Stroke="transparent">
+                                                <Border.StrokeShape>
+                                                    <RoundRectangle CornerRadius="25" />
+                                                </Border.StrokeShape>
+                                                <Image Source="{Binding ImageUrl}" Aspect="AspectFill"></Image>
+                                            </Border>
+                                            <Label Text="{Binding ShortDescription}" Margin="0,10,0,5" TextColor="White"></Label>
+
+                                            <Grid ColumnDefinitions="*, auto">
+                                                <Label Grid.Column="0" VerticalTextAlignment="Center">
+                                                    <Label.FormattedText>
+                                                        <FormattedString>
+                                                            <Span Text="$ " TextColor="{StaticResource Secondary}" FontFamily="PoppinsRegular" FontSize="18"></Span>
+                                                            <Span Text="{Binding Price}" TextColor="White" FontFamily="PoppinsRegular" FontSize="16" FontAttributes="Bold"></Span>
+                                                        </FormattedString>
+                                                    </Label.FormattedText>
+                                                </Label>
+                                                <Border Grid.Column="1" Padding="10" BackgroundColor="{StaticResource Secondary}" Stroke="{StaticResource Secondary}">
+                                                    <Border.StrokeShape>
+                                                        <RoundRectangle CornerRadius="10" />
+                                                    </Border.StrokeShape>
+                                                    <Image Source="plus.svg" WidthRequest="15" HeightRequest="15"></Image>
+                                                </Border>
+                                            </Grid>
+
+                                        </VerticalStackLayout>
+                                    </Border>
+                                </VerticalStackLayout>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </Grid>
+
+
+            </Grid>
+        </ScrollView>
+        <view:NavigationView VerticalOptions="End" Margin="0,5"></view:NavigationView>
+    </StackLayout>
 </ContentPage>
